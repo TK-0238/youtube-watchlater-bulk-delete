@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="extensionName">YouTube 後で見る 一括削除</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <img src="icons/icon48.png" alt="Extension Icon" class="header-icon">
+      <h1 class="header-title" data-i18n="extensionName">YouTube 後で見る 一括削除</h1>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-section" class="loading-section">
+      <div class="loading-spinner"></div>
+      <p data-i18n="loading">読み込み中...</p>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content" style="display: none;">
+      <!-- Status Card -->
+      <div class="status-card">
+        <div class="status-item">
+          <span class="status-label" data-i18n="status">ステータス</span>
+          <span id="status-value" class="status-value">
+            <span id="status-indicator" class="status-indicator"></span>
+            <span id="status-text" data-i18n="disabled">無効</span>
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="status-label" data-i18n="videoCount">動画数</span>
+          <span id="video-count" class="status-value">0</span>
+        </div>
+        <div class="status-item" id="selected-status" style="display: none;">
+          <span class="status-label" data-i18n="selectedCount">選択中</span>
+          <span id="selected-count" class="status-value">0</span>
+        </div>
+      </div>
+
+      <!-- Progress Section (hidden by default) -->
+      <div id="progress-card" class="progress-card" style="display: none;">
+        <div class="progress-info">
+          <span data-i18n="deleting">削除中...</span>
+          <span id="progress-text">0 / 0</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-section">
+        <!-- Watch Later Page Button -->
+        <button id="open-watch-later" class="action-btn primary-btn" style="display: none;">
+          <span data-i18n="openWatchLater">「後で見る」を開く</span>
+        </button>
+
+        <!-- Toggle Button -->
+        <button id="toggle-mode" class="action-btn toggle-btn" style="display: none;">
+          <span id="toggle-text" data-i18n="enable">有効にする</span>
+        </button>
+
+        <!-- Delete Buttons (shown when enabled) -->
+        <div id="delete-buttons" class="delete-buttons" style="display: none;">
+          <button id="delete-selected" class="action-btn delete-btn" disabled>
+            <span data-i18n="deleteSelected">選択した動画を削除</span>
+            (<span id="selected-count-btn">0</span>)
+          </button>
+          <button id="delete-all" class="action-btn delete-btn danger-btn">
+            <span data-i18n="deleteAll">すべて削除</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Debug Section (only shown when enabled) -->
+      <div id="debug-section" class="debug-section" style="display: none;">
+        <h3 class="debug-title">🔎 デバッグツール</h3>
+        <div class="debug-buttons">
+          <button id="debug-analyze" class="action-btn debug-btn">
+            🔍 削除機能を分析
+          </button>
+          <button id="debug-test-delete" class="action-btn debug-btn">
+            🧪 テスト削除実行
+          </button>
+          <button id="debug-simple-test" class="action-btn debug-btn">
+            ⚙️ シンプルテスト
+          </button>
+        </div>
+        <div class="debug-info">
+          <small>※ デバッグ情報はブラウザのコンソールで確認してください。</small>
+        </div>
+      </div>
+
+      <!-- Statistics Section -->
+      <div class="stats-section">
+        <h3 class="stats-title" data-i18n="statistics">統計</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+              <div class="stat-label" data-i18n="totalDeleted">総削除数</div>
+              <div id="total-deleted" class="stat-value">0</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">📅</div>
+            <div class="stat-info">
+              <div class="stat-label" data-i18n="daysUsed">使用日数</div>
+              <div id="days-used" class="stat-value">0</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">🕒</div>
+            <div class="stat-info">
+              <div class="stat-label" data-i18n="lastUsed">最終使用</div>
+              <div id="last-used" class="stat-value">未使用</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-section" class="error-section" style="display: none;">
+      <div class="error-icon">⚠️</div>
+      <p class="error-message" data-i18n="error">エラーが発生しました</p>
+      <button id="retry-btn" class="action-btn secondary-btn" data-i18n="retry">再試行</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <div class="footer-links">
+        <a href="#" id="help-link" data-i18n="help">ヘルプ</a>
+        <a href="#" id="feedback-link" data-i18n="feedback">フィードバック</a>
+      </div>
+      <div class="version-info">
+        <span>v1.0.0</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
