@@ -1,0 +1,124 @@
+{
+  "extensionName": {
+    "message": "YouTube 後で見る 一括削除"
+  },
+  "extensionDescription": {
+    "message": "YouTubeの「後で見る」プレイリストから動画を一括削除できる拡張機能"
+  },
+  "toggleBulkDelete": {
+    "message": "一括削除モード"
+  },
+  "enable": {
+    "message": "有効にする"
+  },
+  "disable": {
+    "message": "無効にする"
+  },
+  "selectAll": {
+    "message": "すべて選択"
+  },
+  "deselectAll": {
+    "message": "すべて解除"
+  },
+  "deleteSelected": {
+    "message": "選択した動画を削除"
+  },
+  "deleteAll": {
+    "message": "すべて削除"
+  },
+  "confirmDelete": {
+    "message": "$1個の動画を削除しますか？この操作は取り消せません。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "deleting": {
+    "message": "削除中..."
+  },
+  "deleteProgress": {
+    "message": "$1 / $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "cancel": {
+    "message": "キャンセル"
+  },
+  "completed": {
+    "message": "完了"
+  },
+  "deleteCompleted": {
+    "message": "$1個の動画を削除しました。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "deleteCancelled": {
+    "message": "削除をキャンセルしました。$1個の動画が削除されました。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "filterPlaceholder": {
+    "message": "タイトルで絞り込み..."
+  },
+  "status": {
+    "message": "ステータス"
+  },
+  "enabled": {
+    "message": "有効"
+  },
+  "disabled": {
+    "message": "無効"
+  },
+  "videoCount": {
+    "message": "動画数"
+  },
+  "selectedCount": {
+    "message": "選択中"
+  },
+  "openWatchLater": {
+    "message": "「後で見る」を開く"
+  },
+  "error": {
+    "message": "エラーが発生しました"
+  },
+  "retry": {
+    "message": "再試行"
+  },
+  "loading": {
+    "message": "読み込み中..."
+  },
+  "statistics": {
+    "message": "統計"
+  },
+  "totalDeleted": {
+    "message": "総削除数"
+  },
+  "daysUsed": {
+    "message": "使用日数"
+  },
+  "lastUsed": {
+    "message": "最終使用"
+  },
+  "help": {
+    "message": "ヘルプ"
+  },
+  "feedback": {
+    "message": "フィードバック"
+  },
+  "notUsed": {
+    "message": "未使用"
+  }
+}
