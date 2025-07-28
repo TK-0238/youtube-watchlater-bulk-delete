@@ -1,0 +1,124 @@
+{
+  "extensionName": {
+    "message": "YouTube Watch Later Bulk Delete"
+  },
+  "extensionDescription": {
+    "message": "Bulk delete videos from YouTube's Watch Later playlist"
+  },
+  "toggleBulkDelete": {
+    "message": "Bulk Delete Mode"
+  },
+  "enable": {
+    "message": "Enable"
+  },
+  "disable": {
+    "message": "Disable"
+  },
+  "selectAll": {
+    "message": "Select All"
+  },
+  "deselectAll": {
+    "message": "Deselect All"
+  },
+  "deleteSelected": {
+    "message": "Delete Selected"
+  },
+  "deleteAll": {
+    "message": "Delete All"
+  },
+  "confirmDelete": {
+    "message": "Delete $1 videos? This action cannot be undone.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "deleting": {
+    "message": "Deleting..."
+  },
+  "deleteProgress": {
+    "message": "$1 / $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "completed": {
+    "message": "Completed"
+  },
+  "deleteCompleted": {
+    "message": "Deleted $1 videos.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "deleteCancelled": {
+    "message": "Deletion cancelled. $1 videos were deleted.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "filterPlaceholder": {
+    "message": "Filter by title..."
+  },
+  "status": {
+    "message": "Status"
+  },
+  "enabled": {
+    "message": "Enabled"
+  },
+  "disabled": {
+    "message": "Disabled"
+  },
+  "videoCount": {
+    "message": "Videos"
+  },
+  "selectedCount": {
+    "message": "Selected"
+  },
+  "openWatchLater": {
+    "message": "Open Watch Later"
+  },
+  "error": {
+    "message": "An error occurred"
+  },
+  "retry": {
+    "message": "Retry"
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "statistics": {
+    "message": "Statistics"
+  },
+  "totalDeleted": {
+    "message": "Total deleted"
+  },
+  "daysUsed": {
+    "message": "Days used"
+  },
+  "lastUsed": {
+    "message": "Last used"
+  },
+  "help": {
+    "message": "Help"
+  },
+  "feedback": {
+    "message": "Feedback"
+  },
+  "notUsed": {
+    "message": "Not used"
+  }
+}
