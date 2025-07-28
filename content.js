@@ -1262,18 +1262,130 @@ class WatchLaterBulkDelete {
   }
   
   filterVideos(searchTerm) {
-    console.log(`🔍 Filtering videos with term: "${searchTerm}"`);
+    console.log('');
+    console.log('🔍 ========================================');
+    console.log('🔍 === FILTERING VIDEOS ===');
+    console.log('🔍 ========================================');
+    console.log('');
+    
+    console.log(`🔍 Search term: "${searchTerm}"`);
+    
     const videos = this.getVideoElements();
-    const term = searchTerm.toLowerCase();
+    console.log(`📺 Found ${videos.length} video elements to filter`);
+    
+    if (videos.length === 0) {
+      console.warn('⚠️ No videos found to filter');
+      return;
+    }
+    
+    // Normalize search term
+    const term = searchTerm.trim().toLowerCase();
+    console.log(`🔍 Normalized search term: "${term}"`);
+    
+    // If search term is empty, show all videos
+    if (term === '') {
+      console.log('📺 Empty search term, showing all videos');
+      videos.forEach((video, index) => {
+        video.style.display = '';
+        console.log(`✅ Video ${index + 1}: shown (empty search)`);
+      });
+      console.log('✅ Filter completed - all videos shown');
+      return;
+    }
+    
+    let shownCount = 0;
+    let hiddenCount = 0;
+    let errorCount = 0;
     
     videos.forEach((video, index) => {
-      const titleElement = video.querySelector('#video-title, h3 a[href*="/watch"], a[href*="/watch"]');
-      if (titleElement) {
-        const titleText = titleElement.textContent.toLowerCase();
-        const matches = titleText.includes(term);
-        video.style.display = matches ? '' : 'none';
+      try {
+        // Try multiple selectors to find the title element
+        const titleSelectors = [
+          '#video-title',
+          'h3 a[href*="/watch"]',
+          'a[href*="/watch"] #video-title',
+          '[id="video-title"]',
+          'ytd-video-meta-block #video-title',
+          'a[href*="/watch"] span[title]',
+          'h3 a span',
+          'a[href*="/watch"]'
+        ];
+        
+        let titleElement = null;
+        let titleText = '';
+        
+        // Try each selector until we find the title
+        for (const selector of titleSelectors) {
+          titleElement = video.querySelector(selector);
+          if (titleElement) {
+            // Get text content or title attribute
+            titleText = titleElement.textContent || titleElement.title || titleElement.getAttribute('title') || '';
+            titleText = titleText.trim();
+            
+            if (titleText && titleText.length > 0) {
+              console.log(`✅ Video ${index + 1} title found with selector "${selector}": "${titleText}"`);
+              break;
+            } else {
+              console.log(`⚠️ Video ${index + 1} selector "${selector}" found element but no text`);
+            }
+          }
+        }
+        
+        if (!titleText || titleText.length === 0) {
+          console.warn(`⚠️ Video ${index + 1}: No title text found with any selector`);
+          console.log(`🔍 Video ${index + 1} HTML preview:`, video.outerHTML.substring(0, 200) + '...');
+          // Show video by default if we can't get the title
+          video.style.display = '';
+          shownCount++;
+          return;
+        }
+        
+        // Normalize title text for comparison
+        const normalizedTitleText = titleText.toLowerCase().trim();
+        console.log(`📝 Video ${index + 1} normalized title: "${normalizedTitleText}"`);
+        
+        // Check if search term matches (partial match)
+        const matches = normalizedTitleText.includes(term);
+        console.log(`🔍 Video ${index + 1} matches "${term}": ${matches}`);
+        
+        // Show or hide video based on match
+        if (matches) {
+          video.style.display = '';
+          shownCount++;
+          console.log(`✅ Video ${index + 1}: SHOWN - "${titleText}"`);
+        } else {
+          video.style.display = 'none';
+          hiddenCount++;
+          console.log(`❌ Video ${index + 1}: HIDDEN - "${titleText}"`);
+        }
+        
+      } catch (error) {
+        console.error(`❌ Error filtering video ${index + 1}:`, error);
+        // Show video by default on error
+        video.style.display = '';
+        errorCount++;
       }
     });
+    
+    console.log('');
+    console.log('📊 Filter Results Summary:');
+    console.log(`  - Total videos: ${videos.length}`);
+    console.log(`  - Shown: ${shownCount}`);
+    console.log(`  - Hidden: ${hiddenCount}`);  
+    console.log(`  - Errors: ${errorCount}`);
+    console.log(`  - Search term: "${searchTerm}"`);
+    console.log('');
+    
+    // Show notification to user
+    if (term === '') {
+      this.showNotification(`📺 すべての動画を表示しています（${videos.length}個）`);
+    } else if (shownCount === 0) {
+      this.showNotification(`🔍 「${searchTerm}」に一致する動画が見つかりません`);
+    } else {
+      this.showNotification(`🔍 「${searchTerm}」で${shownCount}個の動画が見つかりました`);
+    }
+    
+    console.log('✅ === FILTER PROCESS COMPLETED ===');
   }
   
   showConfirmDialog(message) {
